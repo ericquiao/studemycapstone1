@@ -37,7 +37,7 @@ window.addEventListener("load", function () {
       first_display.innerHTML = `<img src = "${data.img}"/>`;
 
       document.getElementById('page_Num').value = data.num;
-      document.getElementById('display').value = Number(3);
+      document.getElementById('display').value = Number(1);
     });
 })();
 
