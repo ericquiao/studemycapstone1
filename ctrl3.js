@@ -22,6 +22,7 @@ random_btn.addEventListener('click', getRandomComics);
 prev_btn.addEventListener('click', getPrevComics);
 next_btn.addEventListener('click', getNextComics);
 go_display.addEventListener('click', goDisplay);
+display.addEventListener('change',changeDisplay)
 
 window.addEventListener("load", function () {
   const loader = document.querySelector(".loader");
@@ -137,6 +138,12 @@ console.log(excess)
 function goDisplay() {  
   validateCurrentCycle()
 }
+
+function changeDisplay(){
+  goDisplay()
+}
+
+
 
 function getNextComics(){
   validateNextCycle()

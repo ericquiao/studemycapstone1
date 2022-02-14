@@ -15,7 +15,6 @@ body{
 
 .inputs{
   width: 150px;
-  
 }
 
 
@@ -24,6 +23,20 @@ body{
   flex-direction: row;
   align-items: baseline;
   justify-content: space-between;
+}
+
+@media all and (max-width:800px){
+  .results{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .inputs{
+    width: 150px;
+    display:flex;
+    
+  }
 }
 
 .result_container{
