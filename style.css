@@ -15,6 +15,7 @@ body{
 
 .inputs{
   width: 150px;
+  height: 30px;
 }
 
 
@@ -34,9 +35,12 @@ body{
   }
   .inputs{
     width: 150px;
+    height: 30px;
     display:flex;
     
   }
+
+
 }
 
 .result_container{
