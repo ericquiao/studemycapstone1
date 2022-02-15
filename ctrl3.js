@@ -39,6 +39,10 @@ window.addEventListener("load", function () {
 
       document.getElementById('page_Num').value = data.num;
       document.getElementById('display').value = Number(1);
+
+      let comicId = `?comicId=${data.num}`
+      urlUpdate(comicId)
+
     });
 })();
 
@@ -176,7 +180,7 @@ function setNumberOfDisplays() {
   console.log('here at setNumberOfDisplays')
   let displayCount = Number(document.getElementById('display').value);
   let pageNum = Number(document.getElementById('page_Num').value);
-
+  
   displaySet(pageNum, displayCount);
 }
 
@@ -185,6 +189,8 @@ function displaySet(currentPage, displayCount) {
   let firstDisplay = currentPage - plusMinus;
   let lastDisplay = currentPage + plusMinus;
 
+  let comicId = `?comicId=${currentPage}`
+  urlUpdate(comicId)
   let counter = 0;
 
   for (let i = firstDisplay; i <= lastDisplay; i++) {
@@ -243,6 +249,7 @@ function displayComics2(comicNum, counter) {
         fifth_comic_num.innerHTML = comicNum   
       }
       hideLoading();
+    
     });
 }
 
@@ -263,4 +270,11 @@ function displayLoading() {
 // hiding loading
 function hideLoading() {
   loader.classList.remove('display');
+}
+
+
+function urlUpdate(url){
+  console.log('hello')
+
+window.history.pushState('new','title', url)
 }
