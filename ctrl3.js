@@ -169,7 +169,7 @@ function getPrevComics() {
 
 function getRandomComics() {
   let displayCount = Number(document.getElementById('display').value);
-  let randomNum = Math.floor(Math.random() * 614);
+  let randomNum = Math.ceiling(Math.random() * 2581); //use ceiling and update 614
   let pageNum = randomNum;
 
   document.getElementById('page_Num').value = pageNum;
@@ -264,7 +264,7 @@ function displayLoading() {
   // to stop loading after some time
   setTimeout(() => {
     loader.classList.remove('display');
-  }, 7000);
+  }, 1000);
 }
 
 // hiding loading
