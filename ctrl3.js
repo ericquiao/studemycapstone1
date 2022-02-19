@@ -169,7 +169,7 @@ function getPrevComics() {
 
 function getRandomComics() {
   let displayCount = Number(document.getElementById('display').value);
-  let randomNum = Math.ceiling(Math.random() * 2581); //use ceiling and update 614
+  let randomNum = Math.ceil(Math.random() * 2583); //use ceiling and update 614
   let pageNum = randomNum;
 
   document.getElementById('page_Num').value = pageNum;
