@@ -35,41 +35,55 @@ function goDisplay() {
     .then((res) => res.json())
     .then((data) => {
       let lastComic = data.num;
-      pageNumCheck(lastComic, pageNum, displayCount,lastDisplayPage,firstDisplayPage);
+      pageNumCheck(
+        lastComic,
+        pageNum,
+        displayCount,
+        lastDisplayPage,
+        firstDisplayPage
+      );
     });
 }
 
-function pageNumCheck(lastComic, pageNum, displayCount,lastDisplayPage,firstDisplayPage) {
+function pageNumCheck(
+  lastComic,
+  pageNum,
+  displayCount,
+  lastDisplayPage,
+  firstDisplayPage
+) {
   if (pageNum > lastComic) {
     document.getElementById('page_Num').value = lastComic;
     document.getElementById('display').value = Number(1);
     alert(`latest comics is until ${lastComic}`);
     displaySet(lastComic, 1);
-
-  } else if(pageNum < 1 ){
+  } else if (pageNum < 1) {
     document.getElementById('page_Num').value = 1;
     document.getElementById('display').value = Number(1);
     alert(`first page is comic#1`);
     displaySet(1, 1);
-  }else {
-    if(lastDisplayPage>lastComic){
-      setupCycle(lastDisplayPage,displayCount, lastComic)
-    }else if(firstDisplayPage<1){
-      if(displayCount==3){
+  } else {
+    if (lastDisplayPage > lastComic) {
+      setupCycle(lastDisplayPage, displayCount, lastComic);
+    } else if (firstDisplayPage < 1) {
+      if (displayCount == 3) {
         document.getElementById('page_Num').value = 2;
         document.getElementById('display').value = Number(3);
-        alert('comics with 3 display pages can only be set to minimum at comic#2')
-        displaySet(2,3)
+        alert(
+          'comics with 3 display pages can only be set to minimum at comic#2'
+        );
+        displaySet(2, 3);
       }
-      if(displayCount==5){
+      if (displayCount == 5) {
         document.getElementById('page_Num').value = 3;
         document.getElementById('display').value = Number(5);
-        alert('comics with 5 display pages can only be set to minimum at comic#3')
-        displaySet(3,5)
+        alert(
+          'comics with 5 display pages can only be set to minimum at comic#3'
+        );
+        displaySet(3, 5);
       }
-
-    }else{
-      displaySet(pageNum, displayCount)
+    } else {
+      displaySet(pageNum, displayCount);
     }
   }
 }
@@ -93,11 +107,6 @@ function setupCycle(lastComic, displayCount, lastPage) {
     }
   }
 }
-
-
-
-
-
 
 window.addEventListener('load', function () {
   const loader = document.querySelector('.loader');
@@ -137,10 +146,8 @@ function validateCurrentCycle() {
     let lastComic = pageNum + (displayCount - 1) / 2;
 
     if (lastComic <= lastPage) {
-    
       displaySet(pageNum, displayCount);
     } else {
-     
       setupCycle(lastPage, pageNum, displayCount, lastComic);
     }
   });
@@ -165,17 +172,12 @@ function validateNextCycle() {
 }
 
 function setupNextCycle(lastPage, pageNum, displayCount, lastComic) {
-
-
   let updatedPageNum = pageNum - lastPage;
-
 
   document.getElementById('page_Num').value = updatedPageNum;
 
   displaySet(updatedPageNum, displayCount);
 }
-
-
 
 function changeDisplay() {
   goDisplay();
@@ -188,20 +190,25 @@ function getNextComics() {
 function getPrevComics() {
   let displayCount = Number(document.getElementById('display').value);
   let pageNum = Number(document.getElementById('page_Num').value);
+  let firstDisplayPage = pageNum - (displayCount - 1) / 2;
 
   let nextMidPage = pageNum - displayCount;
 
-  if (nextMidPage <= 0) {
+
+  if (nextMidPage < 1 || firstDisplayPage < 1) {
+    alert(`first page is comic#1`);
     nextMidPage = 1;
+    displayCount = 1;
   }
   document.getElementById('page_Num').value = nextMidPage;
+  document.getElementById('display').value = displayCount;
 
   displaySet(nextMidPage, displayCount);
 }
 
 function getRandomComics() {
   let displayCount = Number(document.getElementById('display').value);
-  let randomNum = Math.ceil(Math.random() * 2581); //use ceiling and update 614
+  let randomNum = Math.ceil(Math.random() * 2583);
   let pageNum = randomNum;
 
   document.getElementById('page_Num').value = pageNum;
@@ -251,7 +258,6 @@ function displayComics2(comicNum, counter) {
   fetch(requestUrl)
     .then((res) => res.json())
     .then((data) => {
-
       if (numRef == 1) {
         first_display.innerHTML = `<img src = "${data.img}"/>`;
         first_comic_num.innerHTML = comicNum;
